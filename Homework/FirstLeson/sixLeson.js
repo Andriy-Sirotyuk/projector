@@ -8,22 +8,22 @@
 // const initials = userNames
 //   .map(name => {
 //     const parts = name.split(" ");
-//     const sortedParts = parts.sort();
-//     return sortedParts.map(part => part[0]).join(".");
-//   });
+//     return parts.map(part => part[0]).join(".");
+//   })
+//   .sort(); 
 
-// console.log(initials); // [ "Г.П.А.", "П.О.І.", "Р.А.О."]
+// console.log(initials); 
 
 
 // 2 задача
 
-// 1)
+// // 1)
 // const userNames = ['Петро', 'Емма', 'Юстин', 'Ілля', 'Марта', 'Яна', 'Василь', 'Антон', 'Олена'];
 
 // const vowels = ["А", "Е", "Є", "И", "І", "О", "У", "Ю", "Я"];
 
 // const namesStartingWithVowel1 = userNames.filter(name => {
-//   const firstLetter = name.charAt(0).toUpperCase();
+//   const firstLetter = name[0].toUpperCase(); 
 //   return vowels.includes(firstLetter);
 // });
 
@@ -44,13 +44,9 @@
 // const resultsArray = [1, 2, [3, [4]]];
 
 // function calculateProduct(arr) {
-//   return arr.reduce((acc, current) => {
-//     if (Array.isArray(current)) {
-//       return acc * calculateProduct(current);
-//     } else {
-//       return acc * current;
-//     }
-//   }, 1);
+//   const flattenedArray = arr.flat(Infinity);
+//   const product = flattenedArray.reduce((acc, current) => acc * current, 1);
+//   return product;
 // }
 
 // const productOfArray = calculateProduct(resultsArray);
@@ -61,15 +57,12 @@
 // 4 задача 
 
 // function optimizer(data) {
-//     const updatedData = {};
-  
-//     for (const key in data) {
-//       if (data.hasOwnProperty(key)) {
-//         const lowerCaseKey = key.toLowerCase();
-//         const roundedPrice = parseFloat(data[key]).toFixed(2);
-//         updatedData[lowerCaseKey] = roundedPrice;
-//       }
-//     }
+//     const updatedData = Object.fromEntries(
+//       Object.entries(data).map(([key, value]) => [
+//         key.toLowerCase(),
+//         parseFloat(value).toFixed(2),
+//       ])
+//     );
   
 //     return updatedData;
 //   }
