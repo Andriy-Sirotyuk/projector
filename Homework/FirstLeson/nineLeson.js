@@ -1,13 +1,10 @@
 "use strict";
 
-const userNames = ['Петро', 'Емма', 'Петро', 'Емма', 'Марта', 'Яна', 'Василь', 'Антон', 'Олена', 'Емма'];
-
 function filterUnique(array) {
-    const newUserNames = [...userNames];
-
-    const newSet = new Set(newUserNames);
-
-    return [...newSet];
-}
-
-console.log(filterUnique(userNames)); 
+    return Array.from(new Set(array));
+  }
+  
+  const userNames = ['Петро', 'Емма', 'Петро', 'Емма', 'Марта', 'Яна', 'Василь', 'Антон', 'Олена', 'Емма'];
+  
+  console.log(filterUnique(userNames)); 
+  
