@@ -1,5 +1,6 @@
 "use strict"
 
+
 const priceData = {
     Apples: '23.4',
     BANANAS: '48',

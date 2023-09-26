@@ -1,41 +1,41 @@
 "use strict"
 
 //2. Напишіть функцію detonatorTimer(delay) використовуючи вкладений setTimeout 
-// function detonatorTimer(delay) {
-//     let currentDelay = delay;
+function detonatorTimer(delay) {
+    let currentDelay = delay;
   
-//     function countDown() {
-//       if (currentDelay > 0) {
-//         console.log(currentDelay);
-//         currentDelay--;
-//         setTimeout(countDown, 1000);
-//       } else {
-//         console.log('BOOM!');
-//       }
-//     }
+    function countDown() {
+      if (currentDelay > 0) {
+        console.log(currentDelay);
+        currentDelay--;
+        setTimeout(countDown, 1000);
+      } else {
+        console.log('BOOM!');
+      }
+    }
   
-//     countDown();
-//   }
+    countDown();
+  }
   
-//   detonatorTimer(3);
+  detonatorTimer(3);
   
   
-// //1. Напишіть функцію detonatorTimer(delay) використовуючи setInterval 
-//   function detonatorTimer(delay) {
-//     let currentDelay = delay;
+//1. Напишіть функцію detonatorTimer(delay) використовуючи setInterval 
+  function detonatorTimer(delay) {
+    let currentDelay = delay;
   
-//     const intervalId = setInterval(() => {
-//       if (currentDelay > 0) {
-//         console.log(currentDelay);
-//         currentDelay--;
-//       } else {
-//         clearInterval(intervalId);
-//         console.log('BOOM!');
-//       }
-//     }, 1000);
-//   }
+    const intervalId = setInterval(() => {
+      if (currentDelay > 0) {
+        console.log(currentDelay);
+        currentDelay--;
+      } else {
+        clearInterval(intervalId);
+        console.log('BOOM!');
+      }
+    }, 1000);
+  }
   
-//   detonatorTimer(3);
+  detonatorTimer(3);
 
 
   let me = {
