@@ -5,15 +5,13 @@ let headerTwoClass = document.getElementById("headerTwo");
 console.log(headerTwoClass);
 
 
-let firstSectionClass = document.getElementsByClassName("firstSection");
+let firstSectionClass = document.getElementsByTagName("section");
 console.log(firstSectionClass);
 
 
-let blokLi = document.getElementsByTagName("li");
-let index = 4;
-let myLi = blokLi[index];
+let myLi = document.querySelector("li:nth-child(5)");
 console.log(myLi);
 
 
-let hatredLevelBlockClass = document.querySelector("div.hatredLevelBlock");
+let hatredLevelBlockClass = document.getElementsByClassName("hatredLevelBlock");
 console.log(hatredLevelBlockClass);
