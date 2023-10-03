@@ -11,12 +11,12 @@
     border-radius: 20px;
 }
 
-.lightMod {
+.lightMode {
     background-color: #ffffff;
     color: #000000;
 }
 
-.darkMod {
+.darkMode {
     background-color: #000000;
     color: #ffffff;
 }

@@ -22,6 +22,7 @@ function setMode(state) {
         newElement.textContent = "Last turn ON : " + formattedDate;
         body.appendChild(newElement);
     }
+
     localStorage.setItem("colorMode", state);
 }
 
