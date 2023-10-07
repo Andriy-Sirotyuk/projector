@@ -1,41 +1,28 @@
 "use strict";
 
-let colorChaing = document.querySelector(".redBtn");
+const colorChaing = document.querySelector(".redBtn");
 console.log(colorChaing);
 const body = document.body;
 
-function setMode(state) {
-    if (state === "off") {
-        body.classList.remove("lightMode");
-        body.classList.add("darkMode");
-        colorChaing.textContent = "Turn ON";
-        const newElement = document.createElement("p");
-        const formattedDate = formatCurrentDate();
-        newElement.textContent = "Last turn OFF : " + formattedDate;
-        body.appendChild(newElement);
-    } else {
-        body.classList.remove("darkMode");
-        body.classList.add("lightMode");
-        colorChaing.textContent = "Turn OFF";
-        const newElement = document.createElement("p");
-        const formattedDate = formatCurrentDate();
-        newElement.textContent = "Last turn ON : " + formattedDate;
-        body.appendChild(newElement);
-    }
-
-    localStorage.setItem("colorMode", state);
+function turnOn() {
+    body.classList.remove("darkMode");
+    body.classList.add("lightMode");
+    colorChaing.textContent = "Turn OFF";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const currentState = localStorage.getItem("colorMode") || "off";
-    setMode(currentState);
-});
+function turnOff() {
+    body.classList.remove("lightMode");
+    body.classList.add("darkMode");
+    colorChaing.textContent = "Turn ON";
+}
 
-colorChaing.addEventListener("click", () => {
-    const currentState = localStorage.getItem("colorMode") || "off";
-    const newState = currentState === "off" ? "on" : "off";
-    setMode(newState);
-});
+function setMode() {
+    if (body.classList.contains("lightMode")) {
+        turnOff();
+    } else {
+        turnOn();
+    }
+}
 
 function formatCurrentDate() {
     const now = new Date();
@@ -51,3 +38,30 @@ function formatCurrentDate() {
 
     return formattedDate;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const savedData = JSON.parse(localStorage.getItem("colorModeData")) || {
+        state: "off",
+        lastChangeTime: formatCurrentDate(),
+    };
+
+    setMode(savedData.state);
+
+    const newElement = document.createElement("p");
+    newElement.textContent = `Last turn ${savedData.state.toUpperCase()} : ${savedData.lastChangeTime}`;
+    body.appendChild(newElement);
+});
+
+colorChaing.addEventListener("click", () => {
+    const currentState = localStorage.getItem("colorModeData") || "off";
+    const newState = currentState === "off" ? "on" : "off";
+    const lastChangeTime = formatCurrentDate();
+
+    setMode(newState);
+
+    const newElement = document.createElement("p");
+    newElement.textContent = `Last turn ${newState.toUpperCase()} : ${lastChangeTime}`;
+    body.appendChild(newElement);
+
+    localStorage.setItem("colorModeData", JSON.stringify({ state: newState, lastChangeTime }));
+});
