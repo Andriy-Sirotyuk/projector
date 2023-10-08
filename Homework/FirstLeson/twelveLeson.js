@@ -50,8 +50,8 @@ if (savedData) {
 }
 
 colorModeButton.addEventListener("click", () => {
-    const currentState = localStorage.getItem("colorModeData") || "off";
-    const newState = currentState === "off" ? "on" : "off";
+    const currentState = JSON.parse(localStorage.getItem("colorModeData")) || { state: "off" };
+    const newState = currentState.state === "off" ? "on" : "off";
     const lastChangeTime = formatCurrentDate();
 
     setMode(newState);
