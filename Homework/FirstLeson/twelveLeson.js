@@ -4,6 +4,26 @@ const colorModeButton = document.querySelector(".redBtn");
 console.log(colorModeButton);
 const body = document.body;
 
+function turnOn() {
+    body.classList.remove("darkMode");
+    body.classList.add("lightMode");
+    colorModeButton.textContent = "Turn OFF";
+}
+
+function turnOff() {
+    body.classList.remove("lightMode");
+    body.classList.add("darkMode");
+    colorModeButton.textContent = "Turn ON";
+}
+
+function setMode(state) {
+    if (state === "off") {
+        turnOff();
+    } else {
+        turnOn();
+    }
+}
+
 function formatCurrentDate() {
     const now = new Date();
 
@@ -42,23 +62,3 @@ colorModeButton.addEventListener("click", () => {
 
     localStorage.setItem("colorModeData", JSON.stringify({ state: newState, lastChangeTime }));
 });
-
-function turnOn() {
-    body.classList.remove("darkMode");
-    body.classList.add("lightMode");
-    colorModeButton.textContent = "Turn OFF";
-}
-
-function turnOff() {
-    body.classList.remove("lightMode");
-    body.classList.add("darkMode");
-    colorModeButton.textContent = "Turn ON";
-}
-
-function setMode(state) {
-    if (state === "off") {
-        turnOff();
-    } else {
-        turnOn();
-    }
-}
