@@ -1,28 +1,8 @@
 "use strict";
 
-const colorChaing = document.querySelector(".redBtn");
-console.log(colorChaing);
+const colorModeButton = document.querySelector(".redBtn");
+console.log(colorModeButton);
 const body = document.body;
-
-function turnOn() {
-    body.classList.remove("darkMode");
-    body.classList.add("lightMode");
-    colorChaing.textContent = "Turn OFF";
-}
-
-function turnOff() {
-    body.classList.remove("lightMode");
-    body.classList.add("darkMode");
-    colorChaing.textContent = "Turn ON";
-}
-
-function setMode() {
-    if (body.classList.contains("lightMode")) {
-        turnOff();
-    } else {
-        turnOn();
-    }
-}
 
 function formatCurrentDate() {
     const now = new Date();
@@ -39,20 +19,17 @@ function formatCurrentDate() {
     return formattedDate;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const savedData = JSON.parse(localStorage.getItem("colorModeData")) || {
-        state: "off",
-        lastChangeTime: formatCurrentDate(),
-    };
+const savedData = JSON.parse(localStorage.getItem("colorModeData"));
 
+if (savedData) {
     setMode(savedData.state);
 
     const newElement = document.createElement("p");
     newElement.textContent = `Last turn ${savedData.state.toUpperCase()} : ${savedData.lastChangeTime}`;
     body.appendChild(newElement);
-});
+}
 
-colorChaing.addEventListener("click", () => {
+colorModeButton.addEventListener("click", () => {
     const currentState = localStorage.getItem("colorModeData") || "off";
     const newState = currentState === "off" ? "on" : "off";
     const lastChangeTime = formatCurrentDate();
@@ -65,3 +42,23 @@ colorChaing.addEventListener("click", () => {
 
     localStorage.setItem("colorModeData", JSON.stringify({ state: newState, lastChangeTime }));
 });
+
+function turnOn() {
+    body.classList.remove("darkMode");
+    body.classList.add("lightMode");
+    colorModeButton.textContent = "Turn OFF";
+}
+
+function turnOff() {
+    body.classList.remove("lightMode");
+    body.classList.add("darkMode");
+    colorModeButton.textContent = "Turn ON";
+}
+
+function setMode(state) {
+    if (state === "off") {
+        turnOff();
+    } else {
+        turnOn();
+    }
+}
